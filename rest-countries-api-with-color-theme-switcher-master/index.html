@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World Countries</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<script src="app.js"></script>
+<header>
+  <a href="#" class="logo" onclick="showHome(); return false;">Where in the world?</a>
+  <button class="theme-toggle" onclick="toggleTheme()">
+    <span class="theme-icon"></span>
+    <span id="theme-label">Dark Mode</span>
+  </button>
+</header>
+
+<div id="home-page">
+  <main>
+    <div class="controls">
+      <div class="search-wrap">
+        <span class="search-icon">&#x1F50D;</span>
+        <input class="search-input" type="text" id="search" placeholder="Search for a country…" oninput="filterCountries()" />
+      </div>
+      <span class="results-count" id="results-count"></span>
+      <div class="filter-wrap">
+        <select class="filter-select" id="region-filter" onchange="filterCountries()">
+          <option value="">Filter by Region</option>
+          <option>Africa</option>
+          <option>Americas</option>
+          <option>Asia</option>
+          <option>Europe</option>
+          <option>Oceania</option>
+        </select>
+        <span class="filter-arrow">▼</span>
+      </div>
+    </div>
+    <div class="countries-grid" id="grid">
+      <!-- Skeletons while loading -->
+      ${Array(8).fill(`
+        <div class="skeleton">
+          <div class="skeleton-flag"></div>
+          <div class="skeleton-body">
+            <div class="skeleton-line wide" style="height:18px;margin-bottom:20px;"></div>
+            <div class="skeleton-line med"></div>
+            <div class="skeleton-line med"></div>
+            <div class="skeleton-line short"></div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  </main>
+</div>
+
+<div id="detail-page">
+  <main>
+    <button class="back-btn" onclick="showHome()">
+      &#8592; Back
+    </button>
+    <div class="detail-layout">
+      <img class="detail-flag" id="detail-flag" src="" alt="" />
+      <div>
+        <h2 class="detail-name" id="detail-name"></h2>
+        <div class="detail-info" id="detail-info"></div>
+        <div class="borders-section" id="borders-section"></div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>
